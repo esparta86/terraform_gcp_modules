@@ -3,4 +3,5 @@ resource "google_compute_network" "vpc_network_gke" {
   name                    = var.name
   auto_create_subnetworks = false
   routing_mode            = var.routing_mode_vpc
+  delete_default_routes_on_create = true
 }
