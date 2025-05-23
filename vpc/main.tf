@@ -35,7 +35,7 @@ resource "google_compute_subnetwork" "name" {
   resource "google_compute_router" "router" {
     name = "router-${var.name}"
     network = google_compute_network.vpc_network_gke.id
-    region =  google_compute_subnetwork.nat.region
+    region = google_compute_subnetwork.name.region
     project = var.project_id
     bgp {
       asn = 65001
