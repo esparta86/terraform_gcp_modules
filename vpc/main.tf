@@ -30,3 +30,14 @@ resource "google_compute_subnetwork" "name" {
 
   depends_on = [google_compute_network.vpc_network_gke]
   }
+
+
+  resource "google_compute_router" "router" {
+    name = "router-${var.name}"
+    network = google_compute_network.vpc_network_gke.id
+    region = "values(google_compute_subnetwork.name.region)"
+    bgp {
+      asn = 65001
+    }
+
+  }
