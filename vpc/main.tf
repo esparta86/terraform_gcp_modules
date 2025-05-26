@@ -42,7 +42,7 @@ resource "google_compute_subnetwork" "name" {
     bgp {
       asn = 65001
     }
-
+    
   }
 
 
@@ -55,3 +55,15 @@ resource "google_compute_subnetwork" "name" {
     source_subnetwork_ip_ranges_to_nat = "ALL_SUBNETWORKS_ALL_IP_RANGES"
     min_ports_per_vm = 64
   }
+
+
+resource "google_vpc_access_connector" "functions_connector" {
+  count = var.enable_vpc_connector ? 1 : 0
+  depends_on = [ google_compute_network.vpc_network_gke ]
+  name = "vpc-connector-${var.name}"
+  region = google_compute_subnetwork.name.region
+  network = google_compute_network.vpc_network_gke.id
+  ip_cidr_range = var.gcp_cidr_vpc_connector
+  project = var.project_id
+  
+}

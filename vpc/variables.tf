@@ -33,3 +33,15 @@ variable "custom_tags" {
   description = "Custom tags to be applied to the resources"
   default     = {}
 }
+
+
+variable "gcp_cidr_vpc_connector" {
+  type        = string
+  description = "CIDR range for the VPC connector"
+}
+
+variable "enable_vpc_connector" {
+  type        = bool
+  description = "Enable VPC connector for Cloud Functions"
+  default     = false 
+}
