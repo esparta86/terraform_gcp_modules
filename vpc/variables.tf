@@ -45,3 +45,17 @@ variable "enable_vpc_connector" {
   description = "Enable VPC connector for Cloud Functions"
   default     = false 
 }
+
+
+
+variable "functionconnector_vpc_ac_max_throughput" {
+  type        = number
+  description = "Maximum throughput for the VPC connector used by Cloud Functions"
+  default     = 300 # Default value in Mbps
+}
+
+variable "functionconnector_vpc_ac_min_throughput" {
+  type        = number
+  description = "Minimum throughput for the VPC connector used by Cloud Functions"
+  default     = 200 # Default value in Mbps
+}

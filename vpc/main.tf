@@ -59,6 +59,8 @@ resource "google_compute_subnetwork" "name" {
 
 resource "google_vpc_access_connector" "functions_connector" {
   count = var.enable_vpc_connector ? 1 : 0
+  max_throughput = var.functionconnector_vpc_ac_max_throughput
+  min_throughput = var.functionconnector_vpc_ac_min_throughput
   depends_on = [ google_compute_network.vpc_network_gke ]
   name = "vpcconnector${var.name}"
   region = google_compute_subnetwork.name.region
