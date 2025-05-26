@@ -29,6 +29,8 @@ resource "google_compute_subnetwork" "name" {
   }
 
   depends_on = [google_compute_network.vpc_network_gke]
+
+  
   }
 
 

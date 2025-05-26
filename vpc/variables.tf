@@ -27,3 +27,9 @@ variable "cidr_k8s_services" {
   type        = string
   description = "CIDR range for the k8s services"
 }
+
+variable "custom_tags" {
+  type        = map(string)
+  description = "Custom tags to be applied to the resources"
+  default     = {}
+}
