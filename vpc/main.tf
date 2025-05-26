@@ -60,7 +60,7 @@ resource "google_compute_subnetwork" "name" {
 resource "google_vpc_access_connector" "functions_connector" {
   count = var.enable_vpc_connector ? 1 : 0
   depends_on = [ google_compute_network.vpc_network_gke ]
-  name = "vpc-connector-${var.name}"
+  name = "vpcconnector${var.name}"
   region = google_compute_subnetwork.name.region
   network = google_compute_network.vpc_network_gke.id
   ip_cidr_range = var.gcp_cidr_vpc_connector
