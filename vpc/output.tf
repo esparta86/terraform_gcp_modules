@@ -1,9 +1,9 @@
 output "vpc_connector_name" {
-  value = google_vpc_access_connector.functions_connector.name
+  value = google_vpc_access_connector.functions_connector[0].name
 }
 
 output "vpc_connector_id" {
-  value = google_vpc_access_connector.functions_connector.id
+  value = google_vpc_access_connector.functions_connector[0].id
 }
 
 output "vpc_id" {
