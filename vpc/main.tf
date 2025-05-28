@@ -11,7 +11,7 @@ resource "google_compute_subnetwork" "name" {
   ip_cidr_range = var.gcp_cidr_subnet
   network = google_compute_network.vpc_network_gke.id
   project = var.project_id
-  region = "us-east1"
+  region  = var.region
   private_ip_google_access = true # Allow private access to Google APIs
 
   secondary_ip_range {
@@ -37,7 +37,7 @@ resource "google_compute_subnetwork" "name" {
   resource "google_compute_router" "router" {
     name = "router-${var.name}"
     network = google_compute_network.vpc_network_gke.id
-    region = google_compute_subnetwork.name.region
+    region  = var.region
     project = var.project_id
     bgp {
       asn = 65001
@@ -49,7 +49,7 @@ resource "google_compute_subnetwork" "name" {
   resource "google_compute_router_nat" "nat" {
     name = "nat-${var.name}"
     router = google_compute_router.router.name
-    region = google_compute_subnetwork.name.region
+    region = var.region
     project = var.project_id
     nat_ip_allocate_option = "AUTO_ONLY"
     source_subnetwork_ip_ranges_to_nat = "ALL_SUBNETWORKS_ALL_IP_RANGES"
@@ -63,7 +63,7 @@ resource "google_vpc_access_connector" "functions_connector" {
   min_throughput = var.functionconnector_vpc_ac_min_throughput
   depends_on = [ google_compute_network.vpc_network_gke ]
   name = "vpcconnector${var.name}"
-  region = google_compute_subnetwork.name.region
+  region = var.region
   network = google_compute_network.vpc_network_gke.id
   ip_cidr_range = var.gcp_cidr_vpc_connector
   project = var.project_id
