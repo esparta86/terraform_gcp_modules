@@ -17,3 +17,8 @@ variable "region" {
   type        = string
   description = "The region where the Cloud Functions will be deployed"
 }
+
+variable "vpc_connector_name" {
+  type        = string
+  description = "Name of the VPC connector to be used by Cloud Functions"
+}

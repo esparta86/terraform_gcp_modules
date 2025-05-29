@@ -54,8 +54,8 @@ resource "google_cloudfunctions_function" "fns_to_deploy" {
 
   region = var.region
 
-  project = var.project_id[terraform.workspace]
-  vpc_connector = "projects/${var.project_id[terraform.workspace]}/locations/${var.region}/connectors/functionconnector"
+  project = var.project_id
+  vpc_connector = "projects/${var.project_id}/locations/${var.region}/connectors/${var.vpc_connector_name}"
   vpc_connector_egress_settings = "PRIVATE_RANGES_ONLY"
 
 }
