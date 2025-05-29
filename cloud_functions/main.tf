@@ -40,7 +40,7 @@ resource "google_cloudfunctions_function" "fns_to_deploy" {
   source_archive_object = element(google_storage_bucket_object.archives.*.name,count.index)
 
 
-  service_account_email = lookup(element(var.cloud_fn_map,count.index),"service_account")
+  # service_account_email = lookup(element(var.cloud_fn_map,count.index),"service_account")
 
   environment_variables = (lookup(element(var.cloud_fn_map,count.index),"variablesInject","true")  == "true" ? {
     GCLOUD_PROJECT = var.project_id
