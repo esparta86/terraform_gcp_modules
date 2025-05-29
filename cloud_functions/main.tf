@@ -3,6 +3,7 @@
 resource "google_storage_bucket" "bucket" {
   name     = "${var.bucket_name_cloud_function}"
   location = "US"
+  project = var.project_id
 }
 
 data "archive_file" "source_fns" {
